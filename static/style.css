@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  display: flex;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: #000;
+  color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.plane {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.plane > .score {
+  padding: 30px 0;
+  font-size: 42px;
+  text-align: center;
+}
+
+.plane > .image {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.plane > .image > img {
+  display: block;
+  margin: 0 auto;
+}
+
+.plane > .controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.plane > .controls > .btn {
+  flex-grow: 1;
+  background: #eee;
+  color: #333;
+  font-size: 36px;
+  text-align: center;
+  padding: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  margin: 60px 30px;
+}
+
+.plane > .controls > .btn:hover {
+  background: #ccc;
+  color: #000;
+  border-color: #c4c4c4;
+}

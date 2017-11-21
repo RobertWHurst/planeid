@@ -1,9 +1,10 @@
 const PlaneId = require('./lib/plane-id');
+const config  = require('./config');
 
-const planeId = new PlaneId();
+const planeId = new PlaneId(config);
 
 planeId.start(err => {
-    if (err) { return console.error(err); }
+  if (err) { return console.error(err); }
 
-    console.log('the server is running');
+  console.log('the server is running');
 });
