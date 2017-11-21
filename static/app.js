@@ -11,8 +11,8 @@ class Game {
     const $plane = $('.plane');
     $plane.hide();
 
-    $.getJSON('/plane/models', (resData) => {
-      this._planes = resData;
+    $.getJSON('/plane', (planes) => {
+      this._planes = planes;
 
       $plane.fadeIn(200);
       
@@ -28,20 +28,25 @@ class Game {
     $img.width(imageSize);
   }
   
-  _fetchRandomPlane() {
+  _nextPlane() {
+    const index        = Math.round(Math.random() * (this._planes.length - 1));
+    this._currentPlane = this._planes[index];
+
+    this._setFactionButtons();
+    this._updateScore();
+    this._setPlaneImage();
+  }
+
+  _setPlaneImage() {
     const $image = $('.plane > .image');
 
-    $.getJSON('/plane/random', (resData) => {
-      this._currentPlane = resData;
+    const $img = $('<img>')
+      .prop('src', this._currentPlane.url)
+      .hide()
+      .fadeIn(200);
+    $image.empty().append($img);
 
-      const $img = $('<img>')
-        .prop('src', resData.url)
-        .hide()
-        .fadeIn(200);
-      $image.empty().append($img);
-
-      this.resizeImage();
-    });
+    this.resizeImage();
   }
 
   _setFactionButtons() {
@@ -105,12 +110,6 @@ class Game {
   _updateScore() {
     const $score = $('.plane > .score');
     $score.text(`Score: ${this._score}`);
-  }
-
-  _nextPlane() {
-    this._fetchRandomPlane();
-    this._setFactionButtons();
-    this._updateScore();
   }
 }
 
